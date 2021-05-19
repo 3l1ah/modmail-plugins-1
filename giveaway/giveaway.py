@@ -142,7 +142,7 @@ class GiveawayPlugin(commands.Cog):
                         )
                         await message.edit(embed=embed)
                         await channel.send(
-                            f"🎉 Congratulations {winners_text}, you have won **{giveaway['item']}**!"
+                            f"🎉 Congrats {winners_text}, you have won **{giveaway['item']}**!"
                         )
                         try:
                             self.active_giveaways.pop(str(giveaway["message"]))
@@ -163,6 +163,9 @@ class GiveawayPlugin(commands.Cog):
                 embed.description = (
                     f"React with 🎉 to enter the giveaway!\n\n"
                     f"Time Remaining: **{time_remaining}**"
+                    f"> To win, you are required to join all of the Elite Network Servers. Unless this is a no req\n"
+                    f"> If you have won in a giveaway in the last 3, you may **not** participate in this one.\n"
+                    f"> You might also be required to join a server.\n"
                 )
                 await message.edit(embed=embed)
                 del channel, guild
@@ -346,7 +349,7 @@ class GiveawayPlugin(commands.Cog):
                 reacted_users = await reactions.users().flatten()
                 if len(reacted_users) <= 1:
                     embed = message.embeds[0]
-                    embed.description = (
+                   s embed.description = (
                         f"Giveaway has ended!\n\nSadly no one participated :("
                     )
                     await message.edit(embed=embed)
@@ -376,7 +379,7 @@ class GiveawayPlugin(commands.Cog):
                 )
                 await message.edit(embed=embed)
                 await ctx.channel.send(
-                    f"🎉 Congratulations {winners_text}, you have won **{embed.title}**!"
+                    f"🎉 Congrats {winners_text}, you have won **{embed.title}**!"
                 )
                 del winners_text, winners, winners_count, reacted_users, embed
                 break
